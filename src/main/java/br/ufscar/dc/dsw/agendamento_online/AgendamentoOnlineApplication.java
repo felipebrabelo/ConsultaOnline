@@ -20,6 +20,7 @@ import br.ufscar.dc.dsw.agendamento_online.domain.Cliente;
 import br.ufscar.dc.dsw.agendamento_online.domain.Consulta;
 import br.ufscar.dc.dsw.agendamento_online.domain.Profissional;
 import br.ufscar.dc.dsw.agendamento_online.domain.Usuario;
+import br.ufscar.dc.dsw.agendamento_online.domain.enumeration.Especialidade;
 import br.ufscar.dc.dsw.agendamento_online.domain.enumeration.Genero;
 
 @SpringBootApplication
@@ -59,7 +60,7 @@ public class AgendamentoOnlineApplication {
 
 			byte[] curriculo1 = Files.readAllBytes(Path.of("src/main/resources/uploads/curriculo_psicologo_falso.pdf"));
 			Profissional profissional1 = new Profissional("Rafael Almeida Ferreira", "rafael.almeida.psi@email.com ",
-					"rafafer1", "12300012300", "Psicologia", curriculo1);
+					"rafafer1", "12300012300", Especialidade.PSICOLOGIA, curriculo1);
 
 			log.info("Salvando Profissional 1 - Psicólogo");
 
@@ -67,7 +68,7 @@ public class AgendamentoOnlineApplication {
 
 			byte[] curriculo2 = Files.readAllBytes(Path.of("src/main/resources/uploads/curriculo_advogada_falso.pdf"));
 			Profissional profissional2 = new Profissional("Mariana Oliveira Costa", "mariana.costa.adv@email.com",
-					"marimari2", "43251986700", "Advocacia", curriculo2);
+					"marimari2", "43251986700", Especialidade.ADVOCACIA, curriculo2);
 
 			log.info("Salvando Profissional 2 - Advogada");
 
@@ -141,7 +142,7 @@ public class AgendamentoOnlineApplication {
 
 			log.info("Imprimindo todos os advogados");
 
-			for(Profissional p: profissionalDAO.findByEspecialidade("Advocacia")){
+			for(Profissional p: profissionalDAO.findByEspecialidade(Especialidade.ADVOCACIA)){
 				log.info(p.toString());
 			}
 

@@ -2,8 +2,11 @@ package br.ufscar.dc.dsw.agendamento_online.domain;
 
 import java.util.List;
 
+import br.ufscar.dc.dsw.agendamento_online.domain.enumeration.Especialidade;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -13,7 +16,8 @@ import jakarta.persistence.Table;
 public class Profissional extends Usuario {
 
     @Column(nullable = false, length = 30)
-    private String especialidade;
+    @Enumerated(EnumType.STRING)
+    private Especialidade especialidade;
 
     @Lob
     @Column(nullable = false, columnDefinition = "LONGBLOB")
@@ -26,22 +30,22 @@ public class Profissional extends Usuario {
 
     }
 
-    public Profissional(String especialidade, byte[] curriculo) {
+    public Profissional(Especialidade especialidade, byte[] curriculo) {
         this.especialidade = especialidade;
         this.curriculo = curriculo;
     }
 
-    public Profissional(String nome, String email, String senha, String cpf, String especialidade, byte[] curriculo) {
+    public Profissional(String nome, String email, String senha, String cpf, Especialidade especialidade, byte[] curriculo) {
         super(nome, email, senha, cpf);
         this.especialidade = especialidade;
         this.curriculo = curriculo;
     }
 
-    public String getEspecialidade() {
+    public Especialidade getEspecialidade() {
         return especialidade;
     }
 
-    public void setEspecialidade(String especialidade) {
+    public void setEspecialidade(Especialidade especialidade) {
         this.especialidade = especialidade;
     }
 
@@ -68,8 +72,8 @@ public class Profissional extends Usuario {
                 ", nome='" + getNome() + '\'' +
                 ", email='" + getEmail() + '\'' +
                 ", cpf='" + getCpf() + '\'' +
-                ", especialidade='" + especialidade + '\'' +
-                ", curriculoBytes=" + (curriculo != null ? curriculo.length : 0) +
+                ", especialidade='" + especialidade.getDescricao() + '\'' +
+                ", curriculoBytes=" + curriculo.length +
                 '}';
     }
 }

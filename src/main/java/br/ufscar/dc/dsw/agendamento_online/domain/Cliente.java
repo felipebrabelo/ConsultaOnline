@@ -21,7 +21,7 @@ public class Cliente extends Usuario {
     @Column(nullable = false, name = "data_nascimento")
     private LocalDate dataNascimento;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 20)
     @Enumerated(EnumType.STRING)
     private Genero genero;
 

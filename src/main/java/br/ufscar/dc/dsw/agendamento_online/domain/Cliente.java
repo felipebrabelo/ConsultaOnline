@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import br.ufscar.dc.dsw.agendamento_online.domain.enumeration.Genero;
+import br.ufscar.dc.dsw.agendamento_online.domain.enumeration.Papel;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -12,10 +13,10 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "cliente")
+@Table(name = "Cliente")
 public class Cliente extends Usuario {
 
-    @Column(unique = true, length = 11)
+    @Column(length = 11)
     private String telefone;
 
     @Column(nullable = false, name = "data_nascimento")
@@ -40,7 +41,7 @@ public class Cliente extends Usuario {
 
     public Cliente(String nome, String email, String senha, String cpf, String telefone, LocalDate dataNascimento,
             Genero genero) {
-        super(nome, email, senha, cpf);
+        super(nome, email, senha, cpf, Papel.ROLE_CLIENTE);
         this.telefone = telefone;
         this.dataNascimento = dataNascimento;
         this.genero = genero;

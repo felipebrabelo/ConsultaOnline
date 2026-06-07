@@ -12,11 +12,11 @@ public enum Especialidade {
 
     private final String descricao;
 
-    Especialidade(String descricao){
+    Especialidade(String descricao) {
         this.descricao = descricao;
     }
 
-    public String getDescricao(){
+    public String getDescricao() {
         return descricao;
     }
 }

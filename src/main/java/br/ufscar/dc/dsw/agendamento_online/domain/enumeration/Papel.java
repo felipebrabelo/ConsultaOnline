@@ -1,13 +1,14 @@
 package br.ufscar.dc.dsw.agendamento_online.domain.enumeration;
 
-public enum Genero {
-    MASCULINO("Masculino"),
-    FEMININO("Feminino"),
-    OUTRO("Outro");
+public enum Papel {
+
+    ROLE_CLIENTE("Cliente"),
+    ROLE_ADMIN("Administrador"),
+    ROLE_PROFISSIONAL("Profissional");
 
     private final String descricao;
 
-    Genero(String descricao) {
+    Papel(String descricao) {
         this.descricao = descricao;
     }
 

@@ -3,25 +3,28 @@ package br.ufscar.dc.dsw.agendamento_online.domain;
 import java.util.List;
 
 import br.ufscar.dc.dsw.agendamento_online.domain.enumeration.Especialidade;
+import br.ufscar.dc.dsw.agendamento_online.domain.enumeration.Papel;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.Lob;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "profissional")
+@Table(name = "Profissional")
 public class Profissional extends Usuario {
 
     @Column(nullable = false, length = 30)
     @Enumerated(EnumType.STRING)
     private Especialidade especialidade;
 
-    @Lob
-    @Column(nullable = false, columnDefinition = "LONGBLOB")
-    private byte[] curriculo;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "curriculo_id", nullable = false)
+    private FileEntity curriculo;
 
     @OneToMany(mappedBy = "profissional")
     private List<Consulta> consultas;
@@ -30,13 +33,14 @@ public class Profissional extends Usuario {
 
     }
 
-    public Profissional(Especialidade especialidade, byte[] curriculo) {
+    public Profissional(Especialidade especialidade, FileEntity curriculo) {
         this.especialidade = especialidade;
         this.curriculo = curriculo;
     }
 
-    public Profissional(String nome, String email, String senha, String cpf, Especialidade especialidade, byte[] curriculo) {
-        super(nome, email, senha, cpf);
+    public Profissional(String nome, String email, String senha, String cpf, Especialidade especialidade,
+            FileEntity curriculo) {
+        super(nome, email, senha, cpf, Papel.ROLE_PROFISSIONAL);
         this.especialidade = especialidade;
         this.curriculo = curriculo;
     }
@@ -49,11 +53,11 @@ public class Profissional extends Usuario {
         this.especialidade = especialidade;
     }
 
-    public byte[] getCurriculo() {
+    public FileEntity getCurriculo() {
         return curriculo;
     }
 
-    public void setCurriculo(byte[] curriculo) {
+    public void setCurriculo(FileEntity curriculo) {
         this.curriculo = curriculo;
     }
 
@@ -73,7 +77,7 @@ public class Profissional extends Usuario {
                 ", email='" + getEmail() + '\'' +
                 ", cpf='" + getCpf() + '\'' +
                 ", especialidade='" + especialidade.getDescricao() + '\'' +
-                ", curriculoBytes=" + curriculo.length +
+                ", curriculo=" + curriculo.getName() +
                 '}';
     }
 }

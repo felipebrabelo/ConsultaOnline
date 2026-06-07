@@ -18,6 +18,7 @@ import br.ufscar.dc.dsw.agendamento_online.dao.IProfissionalDAO;
 import br.ufscar.dc.dsw.agendamento_online.dao.IUsuarioDAO;
 import br.ufscar.dc.dsw.agendamento_online.domain.Cliente;
 import br.ufscar.dc.dsw.agendamento_online.domain.Consulta;
+import br.ufscar.dc.dsw.agendamento_online.domain.FileEntity;
 import br.ufscar.dc.dsw.agendamento_online.domain.Profissional;
 import br.ufscar.dc.dsw.agendamento_online.domain.Usuario;
 import br.ufscar.dc.dsw.agendamento_online.domain.enumeration.Especialidade;
@@ -58,7 +59,8 @@ public class AgendamentoOnlineApplication {
 
 			usuarioDAO.save(cliente3);
 
-			byte[] curriculo1 = Files.readAllBytes(Path.of("src/main/resources/uploads/curriculo_psicologo_falso.pdf"));
+			byte[] data1 = Files.readAllBytes(Path.of("src/main/resources/uploads/curriculo_psicologo_falso.pdf"));
+			FileEntity curriculo1 = new FileEntity("Curriculo psicologo", "application/pdf", data1);
 			Profissional profissional1 = new Profissional("Rafael Almeida Ferreira", "rafael.almeida.psi@email.com ",
 					"rafafer1", "12300012300", Especialidade.PSICOLOGIA, curriculo1);
 
@@ -66,7 +68,8 @@ public class AgendamentoOnlineApplication {
 
 			usuarioDAO.save(profissional1);
 
-			byte[] curriculo2 = Files.readAllBytes(Path.of("src/main/resources/uploads/curriculo_advogada_falso.pdf"));
+			byte[] data2 = Files.readAllBytes(Path.of("src/main/resources/uploads/curriculo_advogada_falso.pdf"));
+			FileEntity curriculo2 = new FileEntity("Curriculo advogada", "application/pdf", data2);
 			Profissional profissional2 = new Profissional("Mariana Oliveira Costa", "mariana.costa.adv@email.com",
 					"marimari2", "43251986700", Especialidade.ADVOCACIA, curriculo2);
 
@@ -74,37 +77,43 @@ public class AgendamentoOnlineApplication {
 
 			usuarioDAO.save(profissional2);
 
-			Consulta consulta1 = new Consulta(LocalDateTime.of(2026, 06, 27, 13, 00), "Consulta semanal Antonio","https://meet.google.com/abc-defg-hij", cliente1, profissional1);
+			Consulta consulta1 = new Consulta(LocalDateTime.of(2026, 06, 27, 13, 00), "Consulta semanal Antonio",
+					"https://meet.google.com/abc-defg-hij", cliente1, profissional1);
 
 			log.info("Salvando Consulta 1 - Cliente 1 - Psicólogo");
 
 			consultaDAO.save(consulta1);
 
-			Consulta consulta2 = new Consulta(LocalDateTime.of(2026, 06, 27, 14, 00), "Consulta semanal Fátima","https://meet.google.com/klm-nopq-rst", cliente2, profissional1);
+			Consulta consulta2 = new Consulta(LocalDateTime.of(2026, 06, 27, 14, 00), "Consulta semanal Fátima",
+					"https://meet.google.com/klm-nopq-rst", cliente2, profissional1);
 
 			log.info("Salvando Consulta 2 - Cliente 2 - Psicólogo");
 
 			consultaDAO.save(consulta2);
 
-			Consulta consulta3 = new Consulta(LocalDateTime.of(2026, 06, 27, 15, 00), "Consulta semanal Sávio","https://meet.google.com/uvw-xyza-bcd", cliente3, profissional1);
+			Consulta consulta3 = new Consulta(LocalDateTime.of(2026, 06, 27, 15, 00), "Consulta semanal Sávio",
+					"https://meet.google.com/uvw-xyza-bcd", cliente3, profissional1);
 
 			log.info("Salvando Consulta 3 - Cliente 3 - Psicólogo");
 
 			consultaDAO.save(consulta3);
 
-			Consulta consulta4 = new Consulta(LocalDateTime.of(2026, 06, 24, 15, 00), "Consulta sobre pensão","https://meet.google.com/efg-hijk-lmn", cliente1, profissional2);
+			Consulta consulta4 = new Consulta(LocalDateTime.of(2026, 06, 24, 15, 00), "Consulta sobre pensão",
+					"https://meet.google.com/efg-hijk-lmn", cliente1, profissional2);
 
 			log.info("Salvando Consulta 4 - Cliente 1 - Advogada");
 
 			consultaDAO.save(consulta4);
 
-			Consulta consulta5 = new Consulta(LocalDateTime.of(2026, 06, 28, 16, 00), "","https://meet.google.com/opq-rstu-vwx", cliente2, profissional2);
+			Consulta consulta5 = new Consulta(LocalDateTime.of(2026, 06, 28, 16, 00), "",
+					"https://meet.google.com/opq-rstu-vwx", cliente2, profissional2);
 
 			log.info("Salvando Consulta 5 - Cliente 2 - Advogada");
 
 			consultaDAO.save(consulta5);
 
-			Consulta consulta6 = new Consulta(LocalDateTime.of(2026, 06, 30, 15, 00), "Retorno - Consulta sobre pensão","https://meet.google.com/yza-bcde-fgh", cliente1, profissional2);
+			Consulta consulta6 = new Consulta(LocalDateTime.of(2026, 06, 30, 15, 00), "Retorno - Consulta sobre pensão",
+					"https://meet.google.com/yza-bcde-fgh", cliente1, profissional2);
 
 			log.info("Salvando Consulta 6 - Cliente 1 - Advogada (2)");
 
@@ -112,37 +121,49 @@ public class AgendamentoOnlineApplication {
 
 			log.info("Imprimindo todos os usuários");
 
-			for(Usuario u : usuarioDAO.findAll()){
+			for (Usuario u : usuarioDAO.findAll()) {
 				log.info(u.toString());
 			}
 
 			log.info("Imprimindo todas as consultas");
 
-			for(Consulta c: consultaDAO.findAll()){
+			for (Consulta c : consultaDAO.findAll()) {
 				log.info(c.toString());
 			}
 
 			log.info("Imprimindo as consultas do cliente 1");
 
-			for(Consulta c: consultaDAO.findByCliente(cliente1)){
+			for (Consulta c : consultaDAO.findByCliente(cliente1)) {
 				log.info(c.toString());
 			}
 
 			log.info("Imprimindo as consultas do profissional 1");
 
-			for(Consulta c: consultaDAO.findByProfissional(profissional1)){
+			for (Consulta c : consultaDAO.findByProfissional(profissional1)) {
 				log.info(c.toString());
 			}
 
 			log.info("Imprimindo todos os profissionais");
 
-			for(Profissional p: profissionalDAO.findAll()){
+			for (Profissional p : profissionalDAO.findAll()) {
 				log.info(p.toString());
 			}
 
 			log.info("Imprimindo todos os advogados");
 
-			for(Profissional p: profissionalDAO.findByEspecialidade(Especialidade.ADVOCACIA)){
+			for (Profissional p : profissionalDAO.findByEspecialidade(Especialidade.ADVOCACIA)) {
+				log.info(p.toString());
+			}
+
+			log.info("Imprimindo todos os clientes da Advogada");
+
+			for (Cliente c : clienteDAO.findByProfissional(profissional2)) {
+				log.info(c.toString());
+			}
+
+			log.info("Imprimindo todos os profissionais que atenderam o cliente1");
+
+			for (Profissional p : profissionalDAO.findByCliente(cliente1)) {
 				log.info(p.toString());
 			}
 

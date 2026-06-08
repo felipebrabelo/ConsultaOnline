@@ -167,6 +167,33 @@ public class AgendamentoOnlineApplication {
 				log.info(p.toString());
 			}
 
+			log.info("Imprimindo consultas do cliente1 no dia 27/06/2026");
+
+			for (Consulta c : consultaDAO.findByClienteAndDataHoraBetween(cliente1,
+					LocalDateTime.of(2026, 06, 27, 00, 00), LocalDateTime.of(2026, 06, 27, 23, 59))) {
+				log.info(c.toString());
+			}
+
+			log.info("Imprimindo consultas cliente1 a partir de 2026");
+
+			for (Consulta c : consultaDAO.findByClienteAndDataHoraAfter(cliente1,
+					LocalDateTime.of(2026, 01, 01, 00, 00))) {
+				log.info(c.toString());
+			}
+
+			log.info("Imprimindo consultas do profissional1 no dia 27/06/2026");
+
+			for (Consulta c : consultaDAO.findByProfissionalAndDataHoraBetween(profissional1,
+					LocalDateTime.of(2026, 06, 27, 00, 00), LocalDateTime.of(2026, 06, 27, 23, 59))) {
+				log.info(c.toString());
+			}
+
+			log.info("Imprimindo consultas do profissional1 a partir de 2026");
+
+			for (Consulta c : consultaDAO.findByProfissionalAndDataHoraAfter(profissional1,
+					LocalDateTime.of(2026, 01, 01, 00, 00))) {
+				log.info(c.toString());
+			}
 		};
 	}
 }

@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import br.ufscar.dc.dsw.agendamento_online.domain.Usuario;
 
 @SuppressWarnings("unchecked")
-public interface IUsuarioDAO extends CrudRepository<Usuario, Long>{
+public interface IUsuarioDAO extends CrudRepository<Usuario, Long> {
 
     Usuario findById(long id);
 

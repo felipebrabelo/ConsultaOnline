@@ -2,9 +2,9 @@ package br.ufscar.dc.dsw.agendamento_online.domain.enumeration;
 
 public enum Papel {
 
-    ROLE_CLIENTE("Cliente"),
-    ROLE_ADMIN("Administrador"),
-    ROLE_PROFISSIONAL("Profissional");
+    CLIENTE("Cliente"),
+    ADMIN("Administrador"),
+    PROFISSIONAL("Profissional");
 
     private final String descricao;
 

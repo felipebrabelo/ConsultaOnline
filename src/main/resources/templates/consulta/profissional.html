@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head(#{appointment.professional.title})}"></head>
+<body>
+<div th:replace="~{fragments/header :: topnav}"></div>
+<div th:replace="~{fragments/actions :: actions}"></div>
+
+<main class="container py-4">
+    <div class="page-bar">
+        <h1 class="h4 mb-0" th:text="${futuras} ? #{appointment.future} : #{appointment.history}"></h1>
+    </div>
+    <div th:replace="~{fragments/alert :: alerts}"></div>
+    <form th:action="@{/consultas/profissional}" method="get" class="filter-bar">
+        <input class="form-control form-control-sm" type="date" name="data" th:value="${dataSelecionada}">
+        <button class="btn btn-sm btn-outline-primary" type="submit">
+            <i class="bi bi-funnel"></i>
+            <span th:text="#{action.filter}"></span>
+        </button>
+    </form>
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead>
+            <tr>
+                <th th:text="#{field.dateTime}"></th>
+                <th th:text="#{field.client}"></th>
+                <th th:text="#{field.description}"></th>
+                <th class="text-end" th:text="#{field.conferenceLink}"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="consulta : ${consultas}">
+                <td th:text="${#temporals.format(consulta.dataHora, 'dd/MM/yyyy HH:mm')}">Data</td>
+                <td th:text="${consulta.cliente.nome}">Cliente</td>
+                <td th:text="${consulta.descricao}">Descrição</td>
+                <td class="text-end">
+                    <a th:if="${consulta.linkConferencia != null and !#strings.isEmpty(consulta.linkConferencia)}"
+                       th:href="${consulta.linkConferencia}" target="_blank" class="btn btn-sm btn-outline-primary">
+                        <i class="bi bi-camera-video"></i>
+                        <span th:text="#{appointment.openLink}"></span>
+                    </a>
+                </td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(consultas)}">
+                <td colspan="4" class="text-center text-muted py-4" th:text="#{table.empty}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<script th:replace="~{fragments/scripts :: scripts}"></script>
+</body>
+</html>

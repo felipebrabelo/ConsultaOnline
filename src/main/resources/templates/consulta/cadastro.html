@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head(#{appointment.form.title})}"></head>
+<body>
+<div th:replace="~{fragments/header :: topnav}"></div>
+<div th:replace="~{fragments/actions :: actions}"></div>
+
+<main class="container py-4">
+    <div class="page-bar">
+        <h1 class="h4 mb-0" th:text="#{appointment.form.title}"></h1>
+        <a class="btn btn-outline-secondary btn-sm" th:href="@{/profissionais/listar}">
+            <i class="bi bi-arrow-left"></i>
+            <span th:text="#{action.back}"></span>
+        </a>
+    </div>
+    <div th:replace="~{fragments/alert :: alerts}"></div>
+    <form th:object="${consulta}" th:action="@{/consultas/salvar}" method="post" class="form-panel" novalidate>
+        <input type="hidden" th:field="*{profissional.id}">
+        <div class="mb-3">
+            <label class="form-label" th:text="#{field.professional}"></label>
+            <input class="form-control" th:value="${profissional.nome}" readonly>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" th:text="#{field.dateTime}"></label>
+            <input class="form-control" type="datetime-local" th:field="*{dataHora}" th:min="${minDataHora}" step="3600"
+                   th:classappend="${#fields.hasErrors('dataHora')} ? 'is-invalid'">
+            <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('dataHora')}" th:errors="*{dataHora}"></div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" th:text="#{field.description}"></label>
+            <textarea class="form-control" rows="3" th:field="*{descricao}"
+                      th:classappend="${#fields.hasErrors('descricao')} ? 'is-invalid'"></textarea>
+            <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></div>
+        </div>
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-primary" type="submit">
+                <i class="bi bi-calendar-plus"></i>
+                <span th:text="#{appointment.schedule}"></span>
+            </button>
+        </div>
+    </form>
+</main>
+
+<script th:replace="~{fragments/scripts :: scripts}"></script>
+</body>
+</html>

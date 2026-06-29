@@ -2,6 +2,8 @@ package br.ufscar.dc.dsw.agendamento_online.domain;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.ufscar.dc.dsw.agendamento_online.domain.enumeration.Especialidade;
 import br.ufscar.dc.dsw.agendamento_online.domain.enumeration.Papel;
 import jakarta.persistence.CascadeType;
@@ -13,6 +15,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "Profissional")
@@ -20,6 +23,7 @@ public class Profissional extends Usuario {
 
     @Column(nullable = false, length = 30)
     @Enumerated(EnumType.STRING)
+    @NotNull(message = "{profissional.especialidade.notNull}")
     private Especialidade especialidade;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -27,6 +31,7 @@ public class Profissional extends Usuario {
     private FileEntity curriculo;
 
     @OneToMany(mappedBy = "profissional")
+    @JsonIgnore
     private List<Consulta> consultas;
 
     public Profissional() {
@@ -40,7 +45,7 @@ public class Profissional extends Usuario {
 
     public Profissional(String nome, String email, String senha, String cpf, Especialidade especialidade,
             FileEntity curriculo) {
-        super(nome, email, senha, cpf, Papel.ROLE_PROFISSIONAL);
+        super(nome, email, senha, cpf, Papel.PROFISSIONAL);
         this.especialidade = especialidade;
         this.curriculo = curriculo;
     }

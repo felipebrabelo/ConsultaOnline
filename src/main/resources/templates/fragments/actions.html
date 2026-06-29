@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+<nav th:fragment="actions" sec:authorize="isAuthenticated()" class="navbar navbar-expand bg-light border-bottom py-2">
+    <div class="container">
+        <div class="navbar-nav flex-row flex-wrap gap-2">
+            <a sec:authorize="hasRole('ADMIN')" class="btn btn-sm btn-outline-dark" th:href="@{/clientes/listar}">
+                <i class="bi bi-people"></i>
+                <span th:text="#{nav.clients}"></span>
+            </a>
+            <a sec:authorize="hasRole('ADMIN')" class="btn btn-sm btn-outline-dark" th:href="@{/profissionais/listar}">
+                <i class="bi bi-person-badge"></i>
+                <span th:text="#{nav.professionals}"></span>
+            </a>
+            <a sec:authorize="hasRole('CLIENTE')" class="btn btn-sm btn-outline-dark" th:href="@{/consultas/cliente(futuras=true)}">
+                <i class="bi bi-calendar-check"></i>
+                <span th:text="#{nav.futureAppointments}"></span>
+            </a>
+            <a sec:authorize="hasRole('CLIENTE')" class="btn btn-sm btn-outline-dark" th:href="@{/consultas/cliente}">
+                <i class="bi bi-clock-history"></i>
+                <span th:text="#{nav.history}"></span>
+            </a>
+            <a sec:authorize="hasRole('PROFISSIONAL')" class="btn btn-sm btn-outline-dark" th:href="@{/consultas/profissional(futuras=true)}">
+                <i class="bi bi-calendar-check"></i>
+                <span th:text="#{nav.futureAppointments}"></span>
+            </a>
+            <a sec:authorize="hasRole('PROFISSIONAL')" class="btn btn-sm btn-outline-dark" th:href="@{/consultas/profissional}">
+                <i class="bi bi-clock-history"></i>
+                <span th:text="#{nav.history}"></span>
+            </a>
+        </div>
+    </div>
+</nav>
+</body>
+</html>

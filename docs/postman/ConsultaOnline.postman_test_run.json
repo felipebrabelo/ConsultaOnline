@@ -1,0 +1,374 @@
+{
+	"id": "1e3c5ad0-c115-4c65-8c5c-dad52f134da4",
+	"name": "Consulta Online",
+	"timestamp": "2026-06-29T01:40:15.265Z",
+	"collection_id": "56237083-4e212d0a-8da0-4184-82f4-7010199e046e",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 0,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2026-06-29T01:40:14.311Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "afeac6f8-f99e-473c-a361-18c534be246c",
+			"name": "GET /api/clientes",
+			"url": "http://localhost:8080/api/clientes",
+			"time": 100,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				100
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "ab8e087a-e621-4439-9087-4c947f920c3f",
+			"name": "GET /api/clientes/2",
+			"url": "http://localhost:8080/api/clientes/2",
+			"time": 14,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				14
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "539fb7b6-2d62-4968-a767-46e826c6732d",
+			"name": "POST /api/clientes",
+			"url": "http://localhost:8080/api/clientes",
+			"time": 131,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				131
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "8a97ec24-bcff-45b3-bc72-be2b3e0d3ee7",
+			"name": "POST /api/iclientes",
+			"url": "http://localhost:8080/api/iclientes",
+			"time": 82,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				82
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "8b220c75-cb22-44b2-b02f-fe6e2a2a18f4",
+			"name": "PUT /api/clientes/2",
+			"url": "http://localhost:8080/api/clientes/2",
+			"time": 28,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				28
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "a06a3c30-3511-437c-a5fd-996b2239b01c",
+			"name": "DELETE /api/clientes/2",
+			"url": "http://localhost:8080/api/clientes/2",
+			"time": 11,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				11
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "9b7acbc0-df34-4640-838c-a33bd97f0d0c",
+			"name": "GET /api/profissionais",
+			"url": "http://localhost:8080/api/profissionais",
+			"time": 15,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				15
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "b5eb5396-b627-40b0-92aa-03dc41ec3ce3",
+			"name": "GET /api/profissionais/5",
+			"url": "http://localhost:8080/api/profissionais/5",
+			"time": 7,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				7
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "7c3a34c2-4578-4ac9-871f-6b77d09cecf4",
+			"name": "GET /api/profissionais/especialidades/psicologia",
+			"url": "http://localhost:8080/api/profissionais/especialidades/psicologia",
+			"time": 12,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				12
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "461ffae9-5806-4158-a918-b57f13136484",
+			"name": "POST /api/profissionais",
+			"url": "http://localhost:8080/api/profissionais",
+			"time": 94,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				94
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "a0e926ca-258d-45a3-8d3f-02b9eb65c4d9",
+			"name": "PUT /api/profissionais/5",
+			"url": "http://localhost:8080/api/profissionais/5",
+			"time": 18,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				18
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "e133798c-99b3-4bad-bf41-33c8999dc8b1",
+			"name": "DELETE /api/profissionais/5",
+			"url": "http://localhost:8080/api/profissionais/5",
+			"time": 14,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				14
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "022e0cfb-e114-4740-b2d6-7c685ffa8a2c",
+			"name": "GET /api/consultas",
+			"url": "http://localhost:8080/api/consultas",
+			"time": 14,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				14
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "2c92f1e1-06d0-4e14-9b38-9fe450583921",
+			"name": "GET /api/consultas/1",
+			"url": "http://localhost:8080/api/consultas/1",
+			"time": 8,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				8
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "1f775a6c-c4df-47cc-aa92-d5d5f18a380f",
+			"name": "GET /api/consultas/clientes/2",
+			"url": "http://localhost:8080/api/consultas/clientes/2",
+			"time": 10,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				10
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "65116e6d-3d45-499b-a9ca-b7429cd93858",
+			"name": "GET /api/consultas/profissionais/5",
+			"url": "http://localhost:8080/api/consultas/profissionais/5",
+			"time": 11,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				11
+			],
+			"allTests": [
+				{}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 569,
+	"collection": {
+		"requests": [
+			{
+				"id": "afeac6f8-f99e-473c-a361-18c534be246c",
+				"method": "GET"
+			},
+			{
+				"id": "ab8e087a-e621-4439-9087-4c947f920c3f",
+				"method": "GET"
+			},
+			{
+				"id": "539fb7b6-2d62-4968-a767-46e826c6732d",
+				"method": "POST"
+			},
+			{
+				"id": "8a97ec24-bcff-45b3-bc72-be2b3e0d3ee7",
+				"method": "POST"
+			},
+			{
+				"id": "8b220c75-cb22-44b2-b02f-fe6e2a2a18f4",
+				"method": "PUT"
+			},
+			{
+				"id": "a06a3c30-3511-437c-a5fd-996b2239b01c",
+				"method": "DELETE"
+			},
+			{
+				"id": "9b7acbc0-df34-4640-838c-a33bd97f0d0c",
+				"method": "GET"
+			},
+			{
+				"id": "b5eb5396-b627-40b0-92aa-03dc41ec3ce3",
+				"method": "GET"
+			},
+			{
+				"id": "7c3a34c2-4578-4ac9-871f-6b77d09cecf4",
+				"method": "GET"
+			},
+			{
+				"id": "461ffae9-5806-4158-a918-b57f13136484",
+				"method": "POST"
+			},
+			{
+				"id": "a0e926ca-258d-45a3-8d3f-02b9eb65c4d9",
+				"method": "PUT"
+			},
+			{
+				"id": "e133798c-99b3-4bad-bf41-33c8999dc8b1",
+				"method": "DELETE"
+			},
+			{
+				"id": "022e0cfb-e114-4740-b2d6-7c685ffa8a2c",
+				"method": "GET"
+			},
+			{
+				"id": "2c92f1e1-06d0-4e14-9b38-9fe450583921",
+				"method": "GET"
+			},
+			{
+				"id": "1f775a6c-c4df-47cc-aa92-d5d5f18a380f",
+				"method": "GET"
+			},
+			{
+				"id": "65116e6d-3d45-499b-a9ca-b7429cd93858",
+				"method": "GET"
+			}
+		]
+	}
+}

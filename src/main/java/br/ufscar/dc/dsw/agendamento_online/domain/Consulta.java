@@ -11,6 +11,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "Consulta", uniqueConstraints = {
@@ -24,12 +26,15 @@ public class Consulta {
     private Long id;
 
     @Column(nullable = false, name = "data_hora")
+    @NotNull(message = "{consulta.dataHora.required}")
     private LocalDateTime dataHora;
 
     @Column(length = 500)
+    @Size(max = 500, message = "{consulta.descricao.size}")
     private String descricao;
 
     @Column(length = 2048, name = "link_conferencia")
+    @Size(max = 2048, message = "{consulta.linkConferencia.size}")
     private String linkConferencia;
 
     @ManyToOne

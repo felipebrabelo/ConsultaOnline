@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head(#{client.list.title})}"></head>
+<body>
+<div th:replace="~{fragments/header :: topnav}"></div>
+<div th:replace="~{fragments/actions :: actions}"></div>
+
+<main class="container py-4">
+    <div class="page-bar">
+        <h1 class="h4 mb-0" th:text="#{client.list.title}"></h1>
+        <a class="btn btn-primary btn-sm" th:href="@{/clientes/cadastrar}">
+            <i class="bi bi-plus-lg"></i>
+            <span th:text="#{action.new}"></span>
+        </a>
+    </div>
+    <div th:replace="~{fragments/alert :: alerts}"></div>
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead>
+            <tr>
+                <th th:text="#{field.name}"></th>
+                <th th:text="#{field.email}"></th>
+                <th th:text="#{field.cpf}"></th>
+                <th th:text="#{field.phone}"></th>
+                <th class="text-end" th:text="#{field.actions}"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cliente : ${clientes}">
+                <td th:text="${cliente.nome}">Nome</td>
+                <td th:text="${cliente.email}">email</td>
+                <td th:text="${cliente.cpf}">cpf</td>
+                <td th:text="${cliente.telefone}">telefone</td>
+                <td class="text-end text-nowrap">
+                    <a class="btn btn-sm btn-outline-secondary" th:href="@{/clientes/editar/{id}(id=${cliente.id})}" th:title="#{action.edit}">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+                    <a class="btn btn-sm btn-outline-danger" th:href="@{/clientes/excluir/{id}(id=${cliente.id})}"
+                       th:title="#{action.delete}" th:onclick="|return confirm('#{confirm.delete.client}')|">
+                        <i class="bi bi-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(clientes)}">
+                <td colspan="5" class="text-center text-muted py-4" th:text="#{table.empty}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<script th:replace="~{fragments/scripts :: scripts}"></script>
+</body>
+</html>

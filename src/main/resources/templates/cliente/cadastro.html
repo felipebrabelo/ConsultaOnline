@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head(#{client.form.title})}"></head>
+<body>
+<div th:replace="~{fragments/header :: topnav}"></div>
+<div th:replace="~{fragments/actions :: actions}"></div>
+
+<main class="container py-4">
+    <div class="page-bar">
+        <h1 class="h4 mb-0" th:text="#{client.form.title}"></h1>
+        <a class="btn btn-outline-secondary btn-sm" th:href="@{/clientes/listar}">
+            <i class="bi bi-arrow-left"></i>
+            <span th:text="#{action.back}"></span>
+        </a>
+    </div>
+    <form th:object="${cliente}" th:action="${cliente.id == null} ? @{/clientes/salvar} : @{/clientes/editar}" method="post" class="form-panel" novalidate>
+        <input type="hidden" th:field="*{id}">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label" th:text="#{field.name}"></label>
+                <input class="form-control" th:field="*{nome}" th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'">
+                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" th:text="#{field.email}"></label>
+                <input class="form-control" type="email" th:field="*{email}" th:classappend="${#fields.hasErrors('email')} ? 'is-invalid'">
+                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label" th:text="#{field.cpf}"></label>
+                <input class="form-control" th:field="*{cpf}" maxlength="11" th:classappend="${#fields.hasErrors('cpf')} ? 'is-invalid'">
+                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}"></div>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label" th:text="#{field.phone}"></label>
+                <input class="form-control" th:field="*{telefone}" maxlength="11" th:classappend="${#fields.hasErrors('telefone')} ? 'is-invalid'">
+                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}"></div>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label" th:text="#{field.birthDate}"></label>
+                <input class="form-control" type="date" th:field="*{dataNascimento}" th:classappend="${#fields.hasErrors('dataNascimento')} ? 'is-invalid'">
+                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('dataNascimento')}" th:errors="*{dataNascimento}"></div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" th:text="#{field.gender}"></label>
+                <select class="form-select" th:field="*{genero}" th:classappend="${#fields.hasErrors('genero')} ? 'is-invalid'">
+                    <option value="" th:text="#{select.placeholder}"></option>
+                    <option th:each="genero : ${generos}" th:value="${genero}" th:text="${genero.descricao}">Genero</option>
+                </select>
+                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('genero')}" th:errors="*{genero}"></div>
+            </div>
+            <div class="col-md-6" th:if="${cliente.id == null}">
+                <label class="form-label" th:text="#{field.password}"></label>
+                <input class="form-control" type="password" th:field="*{senha}" th:classappend="${#fields.hasErrors('senha')} ? 'is-invalid'">
+                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}"></div>
+            </div>
+            <div class="col-md-6" th:if="${cliente.id != null}">
+                <label class="form-label" th:text="#{field.newPassword}"></label>
+                <input class="form-control" type="password" name="novaSenha" th:classappend="${#fields.hasErrors('senha')} ? 'is-invalid'">
+                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}"></div>
+            </div>
+        </div>
+        <div class="mt-4 d-flex justify-content-end">
+            <button class="btn btn-primary" type="submit">
+                <i class="bi bi-check2"></i>
+                <span th:text="#{action.save}"></span>
+            </button>
+        </div>
+    </form>
+</main>
+
+<script th:replace="~{fragments/scripts :: scripts}"></script>
+</body>
+</html>

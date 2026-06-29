@@ -1,0 +1,191 @@
+{
+  "info": {
+    "name": "Consulta Online",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    }
+  ],
+  "item": [
+    {
+      "name": "Clientes",
+      "item": [
+        {
+          "name": "GET /api/clientes",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/clientes"
+          }
+        },
+        {
+          "name": "GET /api/clientes/2",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/clientes/2"
+          }
+        },
+        {
+          "name": "POST /api/clientes",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Cliente Teste\",\n  \"email\": \"cliente.teste@email.com\",\n  \"senha\": \"cliente123\",\n  \"cpf\": \"55566677788\",\n  \"telefone\": \"16999998888\",\n  \"dataNascimento\": \"1990-05-10\",\n  \"genero\": \"OUTRO\"\n}"
+            },
+            "url": "{{baseUrl}}/api/clientes"
+          }
+        },
+        {
+          "name": "POST /api/iclientes",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Cliente Teste 2\",\n  \"email\": \"cliente.teste2@email.com\",\n  \"senha\": \"cliente123\",\n  \"cpf\": \"55566677789\",\n  \"telefone\": \"16999998889\",\n  \"dataNascimento\": \"1991-05-10\",\n  \"genero\": \"OUTRO\"\n}"
+            },
+            "url": "{{baseUrl}}/api/iclientes"
+          }
+        },
+        {
+          "name": "PUT /api/clientes/2",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Antonio Fagundes Editado\",\n  \"email\": \"antonio@email.com\",\n  \"senha\": \"\",\n  \"cpf\": \"12345678900\",\n  \"telefone\": \"16982223344\",\n  \"dataNascimento\": \"1983-02-02\",\n  \"genero\": \"MASCULINO\"\n}"
+            },
+            "url": "{{baseUrl}}/api/clientes/2"
+          }
+        },
+        {
+          "name": "DELETE /api/clientes/2",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/clientes/2"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Profissionais",
+      "item": [
+        {
+          "name": "GET /api/profissionais",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/profissionais"
+          }
+        },
+        {
+          "name": "GET /api/profissionais/5",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/profissionais/5"
+          }
+        },
+        {
+          "name": "GET /api/profissionais/especialidades/psicologia",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/profissionais/especialidades/psicologia"
+          }
+        },
+        {
+          "name": "POST /api/profissionais",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Profissional Teste\",\n  \"email\": \"profissional.teste@email.com\",\n  \"senha\": \"profissional123\",\n  \"cpf\": \"55566677799\",\n  \"especialidade\": \"MEDICINA\",\n  \"curriculo\": {\n    \"name\": \"curriculo.pdf\",\n    \"type\": \"application/pdf\",\n    \"data\": \"JVBERi0xLjQK\"\n  }\n}"
+            },
+            "url": "{{baseUrl}}/api/profissionais"
+          }
+        },
+        {
+          "name": "PUT /api/profissionais/5",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Rafael Almeida Ferreira Editado\",\n  \"email\": \"rafael.almeida.psi@email.com\",\n  \"senha\": \"\",\n  \"cpf\": \"12300012300\",\n  \"especialidade\": \"PSICOLOGIA\"\n}"
+            },
+            "url": "{{baseUrl}}/api/profissionais/5"
+          }
+        },
+        {
+          "name": "DELETE /api/profissionais/5",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/profissionais/5"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Consultas",
+      "item": [
+        {
+          "name": "GET /api/consultas",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/consultas"
+          }
+        },
+        {
+          "name": "GET /api/consultas/1",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/consultas/1"
+          }
+        },
+        {
+          "name": "GET /api/consultas/clientes/2",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/consultas/clientes/2"
+          }
+        },
+        {
+          "name": "GET /api/consultas/profissionais/5",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/consultas/profissionais/5"
+          }
+        }
+      ]
+    }
+  ]
+}

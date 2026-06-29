@@ -11,6 +11,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import br.ufscar.dc.dsw.agendamento_online.dao.IClienteDAO;
 import br.ufscar.dc.dsw.agendamento_online.dao.IConsultaDAO;
@@ -23,6 +24,7 @@ import br.ufscar.dc.dsw.agendamento_online.domain.Profissional;
 import br.ufscar.dc.dsw.agendamento_online.domain.Usuario;
 import br.ufscar.dc.dsw.agendamento_online.domain.enumeration.Especialidade;
 import br.ufscar.dc.dsw.agendamento_online.domain.enumeration.Genero;
+import br.ufscar.dc.dsw.agendamento_online.domain.enumeration.Papel;
 
 @SpringBootApplication
 public class AgendamentoOnlineApplication {
@@ -35,11 +37,19 @@ public class AgendamentoOnlineApplication {
 
 	@Bean
 	public CommandLineRunner demo(IClienteDAO clienteDAO, IConsultaDAO consultaDAO, IProfissionalDAO profissionalDAO,
-			IUsuarioDAO usuarioDAO) {
+			IUsuarioDAO usuarioDAO, PasswordEncoder passwordEncoder) {
 		return (args) -> {
 
-			Cliente cliente1 = new Cliente("Antonio Fagundes", "antonio@email.com", "atonio123", "12345678900",
+			Usuario admin = new Usuario("Administrador", "admin@email.com", passwordEncoder.encode("admin"),
+					"11122233344", Papel.ADMIN);
+
+			log.info("Salvando administrador");
+
+			usuarioDAO.save(admin);
+
+			Cliente cliente1 = new Cliente("Antonio Fagundes", "antonio@email.com", "antonio123", "12345678900",
 					"16982223344", LocalDate.of(1983, 2, 2), Genero.MASCULINO);
+			cliente1.setSenha(passwordEncoder.encode(cliente1.getSenha()));
 
 			log.info("Salvando Cliente 1");
 
@@ -47,31 +57,35 @@ public class AgendamentoOnlineApplication {
 
 			Cliente cliente2 = new Cliente("Fátima Fagundes", "fatimaf@email.com", "fatima321", "98765432100",
 					"11987777777", LocalDate.of(1998, 12, 12), Genero.FEMININO);
+			cliente2.setSenha(passwordEncoder.encode(cliente2.getSenha()));
 
 			log.info("Salvando Cliente 2");
 
 			usuarioDAO.save(cliente2);
 
-			Cliente cliente3 = new Cliente("Sávio Borges", "sbg@email.com", "borgess124", "00099911123", "16999999923",
+			Cliente cliente3 = new Cliente("Sávio Borges", "sbg@email.com", "borges123", "00099911123", "16999999923",
 					LocalDate.of(2001, 1, 3), Genero.MASCULINO);
+			cliente3.setSenha(passwordEncoder.encode(cliente3.getSenha()));
 
 			log.info("Salvando Cliente 3");
 
 			usuarioDAO.save(cliente3);
 
-			byte[] data1 = Files.readAllBytes(Path.of("src/main/resources/uploads/curriculo_psicologo_falso.pdf"));
+			byte[] data1 = Files.readAllBytes(Path.of("src/main/resources/static/uploads/curriculo_psicologo_falso.pdf"));
 			FileEntity curriculo1 = new FileEntity("Curriculo psicologo", "application/pdf", data1);
-			Profissional profissional1 = new Profissional("Rafael Almeida Ferreira", "rafael.almeida.psi@email.com ",
-					"rafafer1", "12300012300", Especialidade.PSICOLOGIA, curriculo1);
+			Profissional profissional1 = new Profissional("Rafael Almeida Ferreira", "rafael.almeida.psi@email.com",
+					"rafael123", "12300012300", Especialidade.PSICOLOGIA, curriculo1);
+			profissional1.setSenha(passwordEncoder.encode(profissional1.getSenha()));
 
 			log.info("Salvando Profissional 1 - Psicólogo");
 
 			usuarioDAO.save(profissional1);
 
-			byte[] data2 = Files.readAllBytes(Path.of("src/main/resources/uploads/curriculo_advogada_falso.pdf"));
+			byte[] data2 = Files.readAllBytes(Path.of("src/main/resources/static/uploads/curriculo_advogada_falso.pdf"));
 			FileEntity curriculo2 = new FileEntity("Curriculo advogada", "application/pdf", data2);
 			Profissional profissional2 = new Profissional("Mariana Oliveira Costa", "mariana.costa.adv@email.com",
-					"marimari2", "43251986700", Especialidade.ADVOCACIA, curriculo2);
+					"mariana123", "43251986700", Especialidade.ADVOCACIA, curriculo2);
+			profissional2.setSenha(passwordEncoder.encode(profissional2.getSenha()));
 
 			log.info("Salvando Profissional 2 - Advogada");
 
@@ -106,7 +120,7 @@ public class AgendamentoOnlineApplication {
 			consultaDAO.save(consulta4);
 
 			Consulta consulta5 = new Consulta(LocalDateTime.of(2026, 06, 28, 16, 00), "",
-					"https://meet.google.com/opq-rstu-vwx", cliente2, profissional2);
+					"https://meet.google.com/ijk-lmno-pqr", cliente2, profissional2);
 
 			log.info("Salvando Consulta 5 - Cliente 2 - Advogada");
 

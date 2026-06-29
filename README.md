@@ -201,4 +201,3 @@ messages_en_US.properties
 ```
 
 O idioma pode ser trocado clicando nos botões pt e en na navbar.
-```

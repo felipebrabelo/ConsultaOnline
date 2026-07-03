@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head(#{professional.form.title})}"></head>
+<body>
+<div th:replace="~{fragments/header :: topnav}"></div>
+
+<main class="container py-4">
+    <div class="page-bar">
+        <h1 class="h4 mb-0" th:text="${profissional.id == null} ? #{professional.form.create.title} : #{professional.form.edit.title}"></h1>
+        <a class="btn btn-outline-secondary btn-sm" th:href="@{/profissionais/listar}">
+            <i class="bi bi-arrow-left"></i>
+            <span th:text="#{action.back}"></span>
+        </a>
+    </div>
+
+    <div th:replace="~{fragments/alert :: alerts}"></div>
+
+    <form th:object="${profissional}" th:action="${profissional.id == null} ? @{/profissionais/salvar} : @{/profissionais/editar}" method="post" enctype="multipart/form-data" class="form-panel" novalidate>
+        <input type="hidden" th:field="*{id}">
+        <input type="hidden" th:field="*{papel}">
+        <input type="hidden" th:field="*{ativo}">
+
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label" th:text="#{field.name}"></label>
+                <input class="form-control" th:field="*{nome}" th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'">
+                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" th:text="#{field.email}"></label>
+                <input class="form-control" type="email" th:field="*{email}" th:classappend="${#fields.hasErrors('email')} ? 'is-invalid'">
+                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label" th:text="#{field.cpf}"></label>
+                <input class="form-control" th:field="*{cpf}" maxlength="11" th:classappend="${#fields.hasErrors('cpf')} ? 'is-invalid'">
+                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}"></div>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label" th:text="#{field.specialty}"></label>
+                <select class="form-select" th:field="*{especialidade}" th:classappend="${#fields.hasErrors('especialidade')} ? 'is-invalid'">
+                    <option value="" th:text="#{select.placeholder}"></option>
+                    <option th:each="especialidade : ${especialidades}" th:value="${especialidade}" th:text="${especialidade.descricao}">Especialidade</option>
+                </select>
+                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('especialidade')}" th:errors="*{especialidade}"></div>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label" th:text="#{field.resume}"></label>
+                <input class="form-control" type="file" name="curriculoArquivo" accept="application/pdf,.pdf"
+                       th:classappend="${#fields.hasErrors('curriculo')} ? 'is-invalid'">
+                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('curriculo')}" th:errors="*{curriculo}"></div>
+                <div class="form-text" th:if="${profissional.id != null and profissional.curriculoNome != null}"
+                     th:text="${profissional.curriculoNome}">curriculo.pdf</div>
+            </div>
+            <div class="col-md-6" th:if="${profissional.id == null}">
+                <label class="form-label" th:text="#{field.password}"></label>
+                <input class="form-control" type="password" th:field="*{senha}" th:classappend="${#fields.hasErrors('senha')} ? 'is-invalid'">
+                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}"></div>
+            </div>
+            <div class="col-md-6" th:if="${profissional.id != null}">
+                <label class="form-label" th:text="#{field.newPassword}"></label>
+                <input class="form-control" type="password" name="novaSenha" th:classappend="${#fields.hasErrors('senha')} ? 'is-invalid'">
+                <div class="form-text" th:text="#{field.newPassword.help}"></div>
+                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}"></div>
+            </div>
+        </div>
+
+        <div class="mt-4 d-flex justify-content-end">
+            <button class="btn btn-primary" type="submit">
+                <i class="bi bi-check2"></i>
+                <span th:text="#{action.save}"></span>
+            </button>
+        </div>
+    </form>
+</main>
+
+<script th:replace="~{fragments/scripts :: scripts}"></script>
+</body>
+</html>

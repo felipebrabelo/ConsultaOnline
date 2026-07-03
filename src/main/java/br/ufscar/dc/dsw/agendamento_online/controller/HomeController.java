@@ -36,6 +36,7 @@ public class HomeController {
 
             model.addAttribute("especialidades", Especialidade.values());
             model.addAttribute("especialidadeSelecionada", especialidade);
+            model.addAttribute("ocultarAcoes", true);
             return "profissional/listar";
         }
 

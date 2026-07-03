@@ -149,6 +149,24 @@ GET /api/consultas/profissionais/{id}
 
 Os endpoints da API foram checados utilizando postman e os resultados estão disponíveis em docs/postman.
 
+## Cliente REST API 
+
+A pasta `ConsultaOnlineRestClient` contém uma segunda aplicação Maven independente. Ela usa Spring MVC, Thymeleaf e `RestClient` para consumir o CRUD REST de profissionais exposto por esta aplicação principal.
+
+Para executar o cliente, mantenha o servidor principal rodando na porta `8080` e, em outro terminal, rode:
+
+```bash
+cd ConsultaOnlineRestClient
+mvn spring-boot:run
+```
+
+Acesse:
+
+```text
+http://localhost:8081/
+```
+
+
 ## Validações
 
 O projeto valida os principais campos cadastrados/editados:
